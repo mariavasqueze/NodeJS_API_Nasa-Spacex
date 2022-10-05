@@ -9,7 +9,7 @@ const getPagination = require("../../services/query");
 
 async function httpGetAllLaunches(req, res) {
 	const {skip, limit} = getPagination(req.query);
-	const launches = await getAllLaunches(skip, limit)
+	const launches = await getAllLaunches(skip, limit);
 	return res.status(200).json(launches);
 }
 

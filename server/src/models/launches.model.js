@@ -12,6 +12,7 @@ async function populateLaunches() {
 	const response = await axios.post(SPACEX_API_URL, {
 		query: {},
 		options: {
+			pagination: false,
 			populate: [
 				{
 					path: "rocket",
@@ -127,7 +128,7 @@ async function sheduleNewLaunch(launch) {
 		throw new Error("No matching planet was found");
 	}
 
-	const newFlightNumber = (await getLatestFlightNumber()) + 1;
+	const newFlightNumber = await getLatestFlightNumber() + 1;
 
 	const newLaunch = Object.assign(launch, {
 		success: true,

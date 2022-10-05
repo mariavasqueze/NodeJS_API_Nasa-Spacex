@@ -6,6 +6,7 @@ describe("Launches API", () => {
 	//before running all tests:
 	beforeAll(async () => {
 		await mongoConnect();
+		await loadPlanetsData();
 	});
 
 	//after all tests run:
@@ -13,7 +14,7 @@ describe("Launches API", () => {
 		await mongoDisconnect();
 	});
 
-	describe("test GET /launches", () => {
+	describe("Test GET /launches", () => {
 		test("It should respond with 200 success", async () => {
 			const response = await request(app)
 				.get("/v1/launches")
@@ -24,21 +25,21 @@ describe("Launches API", () => {
 
 	describe("Test POST /launch", () => {
 		const completeLaunchData = {
-			mission: "USS-Americas",
-			rocket: "XES Rocket",
+			mission: "USS Americas",
+			rocket: "XES 1853-A",
 			target: "Kepler-62 f",
 			launchDate: "July 7, 2030",
 		};
 
 		const launchDataWithoutDate = {
-			mission: "USS-Americas",
-			rocket: "XES Rocket",
+			mission: "USS Americas",
+			rocket: "XES 1853-A",
 			target: "Kepler-62 f",
 		};
 
 		const launchDataWithInvalidDate = {
-			mission: "USS-Americas",
-			rocket: "XES Rocket",
+			mission: "USS Americas",
+			rocket: "XES 1853-A",
 			target: "Kepler-62 f",
 			launchDate: "hello",
 		};
